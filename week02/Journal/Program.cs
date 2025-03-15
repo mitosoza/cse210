@@ -1,3 +1,4 @@
+// For the exceeding requirements I added an option to erase the Journal
 using System;
 
 class Program
@@ -48,6 +49,19 @@ class Program
                     myJournal.SaveToFile(saveFilename);
                     break;
                 case 5:
+                    // Erase
+                    Console.WriteLine("Are you sure you want to erase the journal? (Y/N)");
+                    string eraseConfirmation = Console.ReadLine();
+                    if (eraseConfirmation.ToUpper() == "Y")
+                    {
+                        Console.WriteLine("What is the filename?");
+                        string eraseFilename = Console.ReadLine();
+                        myJournal._entries.Clear();
+                        myJournal.SaveToFile(eraseFilename);
+                        Console.WriteLine("Journal erased.");
+                    }
+                    break;
+                case 6:
                     // Quit
                     Console.WriteLine("Goodbye!");
                     break;
@@ -55,7 +69,7 @@ class Program
                     Console.WriteLine("Invalid choice, please try again.");
                     break;
             }
-        } while (choiceNumber != 5);
+        } while (choiceNumber != 6);
     }
 
     static void DisplayMenu()
@@ -65,6 +79,7 @@ class Program
         Console.WriteLine("2. Display");
         Console.WriteLine("3. Load");
         Console.WriteLine("4. Save");
-        Console.WriteLine("5. Quit");
+        Console.WriteLine("5. Erase");
+        Console.WriteLine("6. Quit");
     }
 }
